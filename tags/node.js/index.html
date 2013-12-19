@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<!--
+	Striped 2.5 by HTML5 Up!
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Ported to Hexo by Adam Stokes @ajscg
+-->
+<html>
+  <head>
+  <meta charset="utf-8">
+  
+  <title>node.js | WangCHX</title>
+  <meta name="author" content="WangCHX">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="WangCHX"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700|Open+Sans+Condensed:300,700" rel="stylesheet" />
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/skel.min.js"></script>
+  <script src="/js/skel-panels.min.js"></script>
+  <script src="/js/init.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/skel-noscript.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/style-desktop.css" />
+    <link rel="stylesheet" href="/css/style-wide.css" />
+  </noscript>
+
+  <!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+  <!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+  <!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
+  <link rel="alternate" href="/atom.xml" title="WangCHX" type="application/atom+xml">
+  <link rel="stylesheet" href="/js/styles/tomorrow-night.css" />
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  
+
+  </head>
+
+
+
+<body class="left-sidebar">
+  <!-- Wrapper -->
+  <div id="wrapper">
+    <!-- Content -->
+    <div id="content">
+      <div id="content-inner">
+	
+<h2 class="archive-title tag">node.js</h2>
+
+
+  
+    <!-- Post -->
+<article class="is-post is-post-excerpt">
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h2><a href="/2013/07/01/node.js学习/">node.js学习</a></h2>
+  
+
+
+    </header>
+  <div class="info">
+    <!--
+	Note: The date should be formatted exactly as it's shown below. In particular, the
+	"least significant" characters of the month should be encapsulated in a <span>
+	element to denote what gets dropped in 1200px mode (eg. the "uary" in "January").
+	Oh, and if you don't need a date for a particular page or post you can simply delete
+	the entire "date" element.
+	
+      -->
+    <span class="date"><span class="month">7月</span> <span class="day">1</span><span class="year">, 2013</span></span>
+    <!--
+	Note: You can change the number of list items in "stats" to whatever you want.
+      -->
+
+    <ul class="stats">
+      
+  <div class="addthis addthis_toolbox addthis_default_style">
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+
+      <!--
+      <li><a href="#" class="fa fa-comment">16</a></li>
+      <li><a href="#" class="fa fa-heart">32</a></li>
+      <li><a href="#" class="fa fa-twitter">64</a></li>
+      <li><a href="#" class="fa fa-facebook">128</a></li>
+      -->
+    </ul>
+
+  </div>
+  <div class="entry">
+  
+    <h2>快速简介</h2>
+<p>能在服务器端运行的javascript代码。比起传统的服务器端开发(LAMP,PYTHON,ASP等)具有以下的特点：</p>
+<ol>
+<li>单线程</li>
+<li>异步I/O</li>
+<li>事件驱动</li>
+<li>内置http服务器，免去配置等一些复杂操作</li>
+</ol>
+<h2>语法</h2>
+<h3>基本语句</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>console.<span class="keyword">log</span>(<span class="string">"hello world"</span>);
+console.<span class="keyword">log</span>(<span class="string">'%s: %d'</span>,<span class="string">'Hello'</span>, <span class="number">25</span>);<span class="comment">//类似C语言的格式控制</span>
+node -e <span class="string">"console.log('Hello World');"</span><span class="comment">//-e后添加node.js语句</span>
+</pre></td></tr></table></figure>
+
+<p>终端输入node进入REPL(Read-eval-print loop)模式</p>
+<h3>建立HTTP服务器</h3>
+<p>传统的架构是“浏览器－http服务器(Apache,IIS,Nginx)－php解释器”，在node.js则是“浏览器－node”架构。</p>
+<p>创建一个HTTP服务器的代码:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>var http = require('http');
+http.createServer(function(req, res){
+    res.writeHead(200, {'Content-Type':'text/html'});
+    res.write('<span class="tag">&lt;<span class="title">h1</span>&gt;</span>Node.js<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>');
+    res.end('<span class="tag">&lt;<span class="title">p</span>&gt;</span>hello world<span class="tag">&lt;/<span class="title">p</span>&gt;</span>');
+}).listen(3000);
+console.log("HTTP sercer is listening at port 3000");
+</pre></td></tr></table></figure>
+
+<p>接下来在浏览器输入<a href="http://127.0.0.1:3000便可查看" target="_blank">http://127.0.0.1:3000便可查看</a></p>
+<h3>tip:使用supervisor</h3>
+<p>类似PHP之类的开发，修改php脚本后直接刷新浏览器以观察结果，但是node.js就不能这样。这是因为node.js只有在第一次引用某部分是才会解析脚本文件，以后都会直接访问内存，避免重复载入。这样的设计虽说有利于效率，但不利于调试。所以就有supervisor这样的小工具。</p>
+<p>supervisor可以监视你对代码的改动，并自动重启Node.js。操作如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="title">npm</span> install -g supervisor //通过npm来安装supervisor
+<span class="title">supervisor</span> app.js
+</pre></td></tr></table></figure>
+
+<h2>异步I/O与事件式编程</h2>
+<h3>异步与同步的区别</h3>
+<p>同步与阻塞有关。即当一个线程遇到了磁盘读取或者网络读取这些比较耗时的调用时，操作系统会剥夺其cpu控制权，将其分配给其他工作线程。当读取完毕时，操作系统才重新将cpu分配给此线程。这种I/O模式叫做同步I/O模式。</p>
+<p>相应的异步I/O则是不采取阻塞的方式。当线程遇到I/O请求时，不会停止此线程的执行，而是将此I/O请求发送给操作系统，继续执行一个语句的执行。当操作系统完成I/O操作时，以事件的形式通知该线程。</p>
+<h3>Node.js通过回调函数处理异步I/O模式</h3>
+<p>此方法会让人觉得违反直觉。因为可能会先输出下面的语句。因为这是异步的，所以当碰到一个I/O操作时，会直接进行一一条语句的执行，碰巧下一个语句就是输出语句。接着待操作系统处理完I/O事件时，事件循环会通过回调函数完成后续工作。</p>
+<h3>事件</h3>
+<p>事件时由EventEmitter对象提供的。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>var EventEmitter = require(<span class="comment">'events').EventEmitter;</span>
+var event = <span class="keyword">new</span> EventEmitter();
+event.<span class="keyword">on</span>(<span class="comment">'some_event',function(){</span>
+    console.<span class="built_in">log</span>(<span class="comment">'some_event occured.');</span>
+});
+setTimeout(<span class="keyword">function</span>(){
+    event.emit(<span class="comment">'some_event');</span>
+},<span class="number">1000</span>);
+</pre></td></tr></table></figure>
+
+<p>会在1秒后输出some_event occured. </p>
+<h3>模块与包</h3>
+<p>在Node.js中，一个文件即是一个模块。<br>require获得exports对象，即获取一个模块的接口。<br>包其实就是实现某项功能的模块集合。</p>
+<h3>http服务器和客户端</h3>
+<ul>
+<li>http.ServerRequest: 用于接收客户发来的请求，拥有data，end，close三个事件。</li>
+<li>http.ServerResponse: 用于返回给客户端的信息。拥有writeHead，write，end等事件。</li>
+<li>http.ClientRequest: 用于客户端向服务端发送请求，拥有writeHead, write, end三个事件。</li>
+<li>http.ClientResponse: 用于客户端接收到数据后，向服务器端发送确认。拥有data, end, close三个事件。</li>
+</ul>
+
+  
+  </div>
+  <footer>
+    
+     
+     
+    
+  </footer>
+</article>
+
+
+
+  
+
+  <!-- Pager -->
+<div class="pager">
+  
+  
+</div>
+
+
+
+
+      </div>
+    </div>
+    <div id="sidebar">
+  <!-- Logo -->
+  <div id="logo">
+    <h1>WangCHX</h1>
+    <h2></h2>
+  </div>
+  
+  <!-- Nav -->
+  <nav id="nav">
+    <ul>
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/archives">Archives</a></li>
+      
+      <li><a href="/about">About</a></li>
+      
+    </ul>
+  </nav>
+
+
+  <!-- Hexo Widgets -->
+  
+    <!-- Search -->
+<section class="is-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" class="text" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</section>
+
+  
+    
+<section class="is-recent-posts">
+  <h2>最新文章</h2>
+  <ul>
+    
+      <li>
+        <a href="/2013/12/04/the-road-on-leetcode/">The Road on Leetcode</a>
+      </li>
+    
+      <li>
+        <a href="/2013/09/24/max-sum-of-a-sub-sequence/">max sum of a sub-sequence</a>
+      </li>
+    
+      <li>
+        <a href="/2013/07/09/杂记/">杂记</a>
+      </li>
+    
+      <li>
+        <a href="/2013/07/01/node.js学习/">node.js学习</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/28/markdown初步学习/">markdown初步学习</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+  
+
+  <!-- Copyright -->
+  <div id="copyright">
+  
+  &copy; 2013 WangCHX
+  
+  Powered by: <a href="https://github.com/tommy351/hexo">Hexo</a><br />
+  Designed by: <a href="http://html5up.net/">HTML5 UP</a>
+  <p>
+    
+    
+    
+
+   </p>
+</div>
+
+
+
+</div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'wangchx1';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+  </div>
+</body>
+</html>
